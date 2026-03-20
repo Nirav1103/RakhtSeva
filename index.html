@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RakhtSeva - Save Lives Through Blood Donation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap CSS (loaded before custom CSS so our styles always win) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-tint"></i>
+                <span>RakhtSeva</span>
+            </a>
+            
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="donate.html" class="nav-link">Donate</a></li>
+                <li><a href="login.html" class="nav-link">Login</a></li>
+                <li><a href="signup.html" class="nav-link btn-signup">Sign Up</a></li>
+                <li class="theme-toggle-wrapper">
+                    <div class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+                        <i class="fas fa-moon" id="themeIcon"></i>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" id="hero">
+        <div class="hero-overlay"></div>
+        
+        <div class="parallax-elements">
+            <div class="parallax-circle circle-1"></div>
+            <div class="parallax-circle circle-2"></div>
+            <div class="parallax-circle circle-3"></div>
+            <div class="parallax-heart heart-1"><i class="fas fa-heart"></i></div>
+            <div class="parallax-heart heart-2"><i class="fas fa-heart"></i></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="heartbeat-container">
+                <div class="heartbeat-line">
+                    <svg viewBox="0 0 600 100" class="heartbeat-svg">
+                        <path class="heartbeat-path" d="M0,50 L100,50 L120,50 L140,20 L160,80 L180,10 L200,90 L220,50 L240,50 L600,50" />
+                    </svg>
+                </div>
+            </div>
+            
+            <h1 class="hero-title">
+                <span class="highlight heartbeat-text">Save Life</span><br>
+                <span class="typing-container">
+                    <span class="typing-text" id="typingText"></span>
+                    <span class="typing-cursor">|</span>
+                </span>
+            </h1>
+            <p class="hero-subtitle fade-in-up">
+                Every drop counts. Your single donation can save up to 3 lives. 
+                Join our community of life-savers and make a difference.
+            </p>
+            <div class="hero-buttons fade-in-up delay-1">
+                <a href="donate.html" class="btn btn-primary btn-animated">
+                    <i class="fas fa-heart-pulse"></i> Donate Now
+                    <span class="btn-ripple"></span>
+                </a>
+                <a href="#about" class="btn btn-secondary btn-animated">
+                    <i class="fas fa-info-circle"></i> Learn More
+                </a>
+            </div>
+            <div class="blood-types fade-in-up delay-2">
+                <span class="blood-badge" style="--i:1">A+</span>
+                <span class="blood-badge" style="--i:2">A-</span>
+                <span class="blood-badge" style="--i:3">B+</span>
+                <span class="blood-badge" style="--i:4">B-</span>
+                <span class="blood-badge" style="--i:5">O+</span>
+                <span class="blood-badge" style="--i:6">O-</span>
+                <span class="blood-badge" style="--i:7">AB+</span>
+                <span class="blood-badge" style="--i:8">AB-</span>
+            </div>
+        </div>
+        
+        <div class="blood-drops">
+            <i class="fas fa-tint drop drop-1"></i>
+            <i class="fas fa-tint drop drop-2"></i>
+            <i class="fas fa-tint drop drop-3"></i>
+            <i class="fas fa-tint drop drop-4"></i>
+            <i class="fas fa-tint drop drop-5"></i>
+            <i class="fas fa-tint drop drop-6"></i>
+            <i class="fas fa-tint drop drop-7"></i>
+            <i class="fas fa-tint drop drop-8"></i>
+            <i class="fas fa-tint drop drop-9"></i>
+            <i class="fas fa-tint drop drop-10"></i>
+        </div>
+        
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <p>Scroll Down</p>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <h3 class="stat-number" data-target="15000">0</h3>
+                    <p>Registered Donors</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h3 class="stat-number" data-target="8500">0</h3>
+                    <p>Lives Saved</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-hospital"></i>
+                    <h3 class="stat-number" data-target="120">0</h3>
+                    <p>Partner Hospitals</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-city"></i>
+                    <h3 class="stat-number" data-target="50">0</h3>
+                    <p>Cities Covered</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Donate Blood?</h2>
+                <p>Understanding the importance of blood donation</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Save Lives</h3>
+                    <p>One donation can save up to three lives. Blood is needed for surgeries, cancer treatment, and emergencies.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-shield-heart"></i>
+                    </div>
+                    <h3>Health Benefits</h3>
+                    <p>Regular blood donation helps reduce harmful iron stores and stimulates production of new blood cells.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Quick Process</h3>
+                    <p>The entire process takes only about 30 minutes. The actual donation takes just 8-10 minutes.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Get Certified</h3>
+                    <p>Receive a beautiful certificate of appreciation for your noble contribution to saving lives.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-quote-left"></i> Stories That Inspire</h2>
+                <p>Real stories from donors and recipients whose lives were touched by blood donation</p>
+            </div>
+            
+            <div class="testimonials-wrapper">
+                <div class="testimonials-carousel" id="testimonialsCarousel">
+                    <div class="testimonial-card active">
+                        <div class="testimonial-quote">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"After my accident, I needed 6 units of blood. Thanks to generous donors, I'm alive today to see my daughter's wedding. Blood donation truly is the gift of life."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Rajesh Kumar">
+                                <span class="blood-type-badge">A+</span>
+                            </div>
+                            <div class="author-info">
+                                <h4>Rajesh Kumar</h4>
+                                <p>Blood Recipient</p>
+                                <div class="author-location">
+                                    <i class="fas fa-map-marker-alt"></i> Mumbai, Maharashtra
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-tag recipient">
+                            <i class="fas fa-heart"></i> Blood Saved My Life
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"I've been donating blood for 15 years now. Every time I donate, I feel a sense of purpose. Knowing that my blood could save someone's life is the greatest reward."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Dr. Priya Sharma">
+                                <span class="blood-type-badge">O-</span>
+                            </div>
+                            <div class="author-info">
+                                <h4>Dr. Priya Sharma</h4>
+                                <p>Regular Donor - 45 Donations</p>
+                                <div class="author-location">
+                                    <i class="fas fa-map-marker-alt"></i> Delhi
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-tag donor">
+                            <i class="fas fa-medal"></i> Gold Donor
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"My son was diagnosed with leukemia at age 5. He needed regular blood transfusions. The kindness of strangers gave us hope. Today, he's 12 and cancer-free!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Sunita Patel">
+                                <span class="blood-type-badge">B+</span>
+                            </div>
+                            <div class="author-info">
+                                <h4>Sunita Patel</h4>
+                                <p>Mother of Recipient</p>
+                                <div class="author-location">
+                                    <i class="fas fa-map-marker-alt"></i> Ahmedabad, Gujarat
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-tag recipient">
+                            <i class="fas fa-heart"></i> My Child Lives Because of Donors
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"As a college student, I started donating blood during a campus drive. Now I organize drives at my workplace. It takes just 30 minutes to be someone's hero!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Arjun Reddy">
+                                <span class="blood-type-badge">AB+</span>
+                            </div>
+                            <div class="author-info">
+                                <h4>Arjun Reddy</h4>
+                                <p>Regular Donor - 20 Donations</p>
+                                <div class="author-location">
+                                    <i class="fas fa-map-marker-alt"></i> Hyderabad, Telangana
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-tag donor">
+                            <i class="fas fa-award"></i> Silver Donor
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"During my wife's emergency C-section, she lost a lot of blood. The blood bank had the units we needed because of regular donors. Our baby is now 2 years old!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Vikram Singh">
+                                <span class="blood-type-badge">O+</span>
+                            </div>
+                            <div class="author-info">
+                                <h4>Vikram Singh</h4>
+                                <p>Husband of Recipient</p>
+                                <div class="author-location">
+                                    <i class="fas fa-map-marker-alt"></i> Jaipur, Rajasthan
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-tag recipient">
+                            <i class="fas fa-heart"></i> Donors Saved My Family
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"I was nervous about my first donation, but the staff at RakhtSeva made it so easy! The whole process was smooth, and I felt great afterwards. Can't wait to donate again!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Ananya Krishnan">
+                                <span class="blood-type-badge">A-</span>
+                            </div>
+                            <div class="author-info">
+                                <h4>Ananya Krishnan</h4>
+                                <p>First-time Donor</p>
+                                <div class="author-location">
+                                    <i class="fas fa-map-marker-alt"></i> Chennai, Tamil Nadu
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-tag donor">
+                            <i class="fas fa-star"></i> New Hero
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-nav">
+                    <button class="carousel-btn prev" id="prevTestimonial">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="carousel-dots" id="carouselDots">
+                        <span class="dot active" data-index="0"></span>
+                        <span class="dot" data-index="1"></span>
+                        <span class="dot" data-index="2"></span>
+                        <span class="dot" data-index="3"></span>
+                        <span class="dot" data-index="4"></span>
+                        <span class="dot" data-index="5"></span>
+                    </div>
+                    <button class="carousel-btn next" id="nextTestimonial">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                
+                <div class="carousel-progress">
+                    <div class="progress-bar" id="carouselProgress"></div>
+                </div>
+            </div>
+            
+            <div class="share-story-cta">
+                <div class="share-story-content">
+                    <i class="fas fa-pen-fancy"></i>
+                    <div>
+                        <h4>Have a story to share?</h4>
+                        <p>Your experience could inspire others to donate blood and save lives!</p>
+                    </div>
+                    <a href="/cdn-cgi/l/email-protection#d1a2a5bea3b8b4a291a3b0bab9a5a2b4a7b0ffbea3b6" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Share Your Story
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="health-tips-section" id="health-tips">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-heartbeat"></i> Health Tips for Donors</h2>
+                <p>Essential tips before and after blood donation for a safe experience</p>
+            </div>
+            
+            <div class="tips-tabs">
+                <button class="tips-tab-btn active" data-tips="before">
+                    <i class="fas fa-clipboard-check"></i> Before Donation
+                </button>
+                <button class="tips-tab-btn" data-tips="after">
+                    <i class="fas fa-heart"></i> After Donation
+                </button>
+                <button class="tips-tab-btn" data-tips="eligibility">
+                    <i class="fas fa-user-check"></i> Eligibility
+                </button>
+            </div>
+            
+            <div class="tips-content active" id="tips-before">
+                <div class="tips-grid">
+                    <div class="tip-card" style="--delay: 0.1s">
+                        <div class="tip-icon water">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <h4>Stay Hydrated</h4>
+                        <p>Drink at least 16 oz (500ml) of water before donating. Proper hydration makes the process easier.</p>
+                    </div>
+                    <div class="tip-card" style="--delay: 0.2s">
+                        <div class="tip-icon food">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h4>Eat Iron-Rich Foods</h4>
+                        <p>Include spinach, beans, red meat, and fortified cereals in your diet 2-3 days before donation.</p>
+                    </div>
+                    <div class="tip-card" style="--delay: 0.3s">
+                        <div class="tip-icon sleep">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <h4>Get Good Sleep</h4>
+                        <p>Ensure 7-8 hours of quality sleep the night before. Rest helps your body prepare.</p>
+                    </div>
+                    <div class="tip-card" style="--delay: 0.4s">
+                        <div class="tip-icon meal">
+                            <i class="fas fa-apple-alt"></i>
+                        </div>
+                        <h4>Eat a Healthy Meal</h4>
+                        <p>Have a nutritious meal 2-3 hours before. Avoid fatty foods as they affect blood tests.</p>
+                    </div>
+                    <div class="tip-card" style="--delay: 0.5s">
+                        <div class="tip-icon no-alcohol">
+                            <i class="fas fa-wine-bottle"></i>
+                        </div>
+                        <h4>Avoid Alcohol</h4>
+                        <p>No alcohol for at least 24 hours before donating. It causes dehydration.</p>
+                    </div>
+                    <div class="tip-card" style="--delay: 0.6s">
+                        <div class="tip-icon clothing">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <h4>Wear Comfortable Clothes</h4>
+                        <p>Wear short sleeves or sleeves that can easily roll up above your elbow.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tips-content" id="tips-after">
+                <div class="tips-grid">
+                    <div class="tip-card" style="--delay: 0.1s">
+                        <div class="tip-icon rest">
+                            <i class="fas fa-couch"></i>
+                        </div>
+                        <h4>Rest for 15 Minutes</h4>
+                        <p>Stay at the donation center and rest. Enjoy the refreshments provided.</p>
+                    </div>
+                    <div class="tip-card" style="--delay: 0.2s">
+                        <div class="tip-icon fluids">
+                            <i class="fas fa-glass-water"></i>
+                        </div>
+                        <h4>Drink Extra Fluids</h4>
+                        <p>Drink 4-5 extra glasses of non-alcoholic beverages over the next 24 hours.</p>
+                    </div>
+                    <div class="tip-card" style="--delay: 0.3s">
+                        <div class="tip-icon bandage">
+                            <i class="fas fa-band-aid"></i>
+                        </div>
+                        <h4>Keep Bandage On</h4>
+                        <p>Leave the bandage on for at least 4-5 hours. Keep the area clean and dry.</p>
+                    </div>
+                    <div class="tip-card" style="--delay: 0.4s">
+                        <div class="tip-icon no-exercise">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <h4>Avoid Heavy Exercise</h4>
+                        <p>Skip strenuous activities and heavy lifting for 24 hours after donation.</p>
+                    </div>
+                    <div class="tip-card" style="--delay: 0.5s">
+                        <div class="tip-icon snack">
+                            <i class="fas fa-cookie"></i>
+                        </div>
+                        <h4>Have a Snack</h4>
+                        <p>Eat iron-rich snacks to help replenish your iron stores quickly.</p>
+                    </div>
+                    <div class="tip-card" style="--delay: 0.6s">
+                        <div class="tip-icon dizzy">
+                            <i class="fas fa-head-side-virus"></i>
+                        </div>
+                        <h4>If Feeling Dizzy</h4>
+                        <p>Lie down with feet elevated. Drink fluids and rest until you feel better.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tips-content" id="tips-eligibility">
+                <div class="tips-grid">
+                    <div class="tip-card" style="--delay: 0.1s">
+                        <div class="tip-icon age">
+                            <i class="fas fa-birthday-cake"></i>
+                        </div>
+                        <h4>Age Requirement</h4>
+                        <p>You must be between 18-65 years old to donate blood in India.</p>
+                    </div>
+                    <div class="tip-card" style="--delay: 0.2s">
+                        <div class="tip-icon weight">
+                            <i class="fas fa-weight"></i>
+                        </div>
+                        <h4>Weight Requirement</h4>
+                        <p>Minimum weight of 50 kg (110 lbs) is required for safe donation.</p>
+                    </div>
+                    <div class="tip-card" style="--delay: 0.3s">
+                        <div class="tip-icon hemoglobin">
+                            <i class="fas fa-vial"></i>
+                        </div>
+                        <h4>Hemoglobin Level</h4>
+                        <p>Minimum 12.5 g/dL hemoglobin is required. This is tested before donation.</p>
+                    </div>
+                    <div class="tip-card" style="--delay: 0.4s">
+                        <div class="tip-icon gap">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h4>Donation Gap</h4>
+                        <p>Men: 3 months (90 days) gap. Women: 4 months (120 days) gap between donations.</p>
+                    </div>
+                    <div class="tip-card" style="--delay: 0.5s">
+                        <div class="tip-icon health">
+                            <i class="fas fa-notes-medical"></i>
+                        </div>
+                        <h4>Good Health</h4>
+                        <p>You should be feeling well on the day. No cold, flu, or infection.</p>
+                    </div>
+                    <div class="tip-card" style="--delay: 0.6s">
+                        <div class="tip-icon no-tattoo">
+                            <i class="fas fa-pen-fancy"></i>
+                        </div>
+                        <h4>Recent Tattoo/Piercing</h4>
+                        <p>Wait 6-12 months after getting a tattoo or piercing before donating.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="eligibility-calculator">
+                <h3><i class="fas fa-calculator"></i> Next Donation Eligibility Calculator</h3>
+                <div class="calculator-form">
+                    <div class="calc-group">
+                        <label>Last Donation Date</label>
+                        <input type="date" id="lastDonationCalc">
+                    </div>
+                    <div class="calc-group">
+                        <label>Gender</label>
+                        <select id="genderCalc">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="calcEligibility">
+                        <i class="fas fa-calculator"></i> Calculate
+                    </button>
+                </div>
+                <div class="calc-result" id="calcResult" style="display: none;">
+                    <div class="result-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="result-text">
+                        <h4 id="eligibilityStatus">You can donate!</h4>
+                        <p id="eligibilityDate">Your next eligible date is: <strong>-</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="compatibility-section-home" id="compatibility">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-exchange-alt"></i> Blood Type Compatibility</h2>
+                <p>Know which blood types can donate to and receive from each other</p>
+            </div>
+            
+            <div class="compatibility-container">
+                <div class="blood-selector">
+                    <h3><i class="fas fa-hand-pointer"></i> Click a Blood Type to See Compatibility</h3>
+                    <div class="blood-type-buttons">
+                        <button class="blood-type-btn active" data-type="A+">A+</button>
+                        <button class="blood-type-btn" data-type="A-">A-</button>
+                        <button class="blood-type-btn" data-type="B+">B+</button>
+                        <button class="blood-type-btn" data-type="B-">B-</button>
+                        <button class="blood-type-btn" data-type="O+">O+</button>
+                        <button class="blood-type-btn" data-type="O-">O-</button>
+                        <button class="blood-type-btn" data-type="AB+">AB+</button>
+                        <button class="blood-type-btn" data-type="AB-">AB-</button>
+                    </div>
+                </div>
+                
+                <div class="compatibility-display">
+                    <div class="compatibility-card donate-to">
+                        <div class="compat-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <h4>Can Donate To</h4>
+                        </div>
+                        <div class="compat-blood-types" id="canDonateToHome">
+                            <span class="compat-badge">A+</span>
+                            <span class="compat-badge">AB+</span>
+                        </div>
+                        <p class="compat-info">Your blood can help these recipients</p>
+                    </div>
+                    
+                    <div class="selected-blood-display">
+                        <div class="selected-blood-circle">
+                            <span id="selectedBloodTypeHome">A+</span>
+                        </div>
+                        <p>Selected Blood Type</p>
+                    </div>
+                    
+                    <div class="compatibility-card receive-from">
+                        <div class="compat-header">
+                            <i class="fas fa-arrow-left"></i>
+                            <h4>Can Receive From</h4>
+                        </div>
+                        <div class="compat-blood-types" id="canReceiveFromHome">
+                            <span class="compat-badge">A+</span>
+                            <span class="compat-badge">A-</span>
+                            <span class="compat-badge">O+</span>
+                            <span class="compat-badge">O-</span>
+                        </div>
+                        <p class="compat-info">You can receive blood from these donors</p>
+                    </div>
+                </div>
+                
+                <div class="special-types-info">
+                    <div class="special-type-card universal-donor">
+                        <div class="special-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="special-content">
+                            <h4>O- : Universal Donor</h4>
+                            <p>O negative blood can be given to anyone! It's crucial in emergencies.</p>
+                            <div class="special-badge">Donates to ALL</div>
+                        </div>
+                    </div>
+                    <div class="special-type-card universal-recipient">
+                        <div class="special-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="special-content">
+                            <h4>AB+ : Universal Recipient</h4>
+                            <p>AB positive individuals can receive blood from any blood type!</p>
+                            <div class="special-badge recipient">Receives from ALL</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Click on any question to reveal the answer</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Who can donate blood?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Anyone between 18-65 years old, weighing at least 50 kg, and in good health can donate blood. You should not have any chronic diseases like diabetes, heart conditions, or blood-borne infections. A gap of at least 3 months is required between donations.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How often can I donate blood?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Men can donate blood every 3 months (12 weeks), while women can donate every 4 months (16 weeks). This ensures your body has enough time to replenish the donated blood cells.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is blood donation safe?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, blood donation is completely safe. We use sterile, single-use needles and equipment for each donor. The process is supervised by trained medical professionals. Your body replaces the donated blood within a few weeks.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What should I do before donating blood?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Before donating, make sure to: Get a good night's sleep, eat a healthy meal (avoid fatty foods), drink plenty of water, bring a valid ID, and wear comfortable clothing with sleeves that can be raised above the elbow.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What happens after I donate blood?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>After donation, you'll rest for 10-15 minutes and be offered refreshments. Your blood will be tested, processed, and separated into components. Within 24-48 hours, your donation could be helping patients in need!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="leaderboard-section" id="leaderboard">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-trophy"></i> Donor Leaderboard</h2>
+                <p>Celebrating our heroes who save lives through blood donation</p>
+            </div>
+            
+            <div class="badge-legend">
+                <div class="badge-item">
+                    <div class="badge-icon gold">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="badge-info">
+                        <h4>Gold Donor</h4>
+                        <p>10+ Donations</p>
+                    </div>
+                </div>
+                <div class="badge-item">
+                    <div class="badge-icon silver">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="badge-info">
+                        <h4>Silver Donor</h4>
+                        <p>5-9 Donations</p>
+                    </div>
+                </div>
+                <div class="badge-item">
+                    <div class="badge-icon bronze">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="badge-info">
+                        <h4>Bronze Donor</h4>
+                        <p>3-4 Donations</p>
+                    </div>
+                </div>
+                <div class="badge-item">
+                    <div class="badge-icon starter">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="badge-info">
+                        <h4>New Hero</h4>
+                        <p>1-2 Donations</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="leaderboard-container">
+                <div class="leaderboard-header">
+                    <span class="lb-rank">Rank</span>
+                    <span class="lb-donor">Donor</span>
+                    <span class="lb-blood">Blood Type</span>
+                    <span class="lb-donations">Donations</span>
+                    <span class="lb-lives">Lives Saved</span>
+                    <span class="lb-badge">Badge</span>
+                </div>
+                <div class="leaderboard-body" id="leaderboardBody">
+                    <div class="leaderboard-empty">
+                        <i class="fas fa-users"></i>
+                        <p>Be the first to join our leaderboard!</p>
+                        <a href="signup.html" class="btn btn-primary">
+                            <i class="fas fa-user-plus"></i> Sign Up Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="your-rank-section" id="yourRankSection" style="display: none;">
+                <div class="your-rank-card">
+                    <div class="your-rank-icon">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="your-rank-info">
+                        <h3>Your Ranking</h3>
+                        <p>You are ranked <span id="yourRankNumber">#1</span> with <span id="yourDonationCount">0</span> donations</p>
+                    </div>
+                    <div class="your-rank-badge" id="yourRankBadge">
+                        <i class="fas fa-heart"></i>
+                        <span>New Hero</span>
+                    </div>
+                    <a href="donate.html" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Donate More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Save Lives?</h2>
+                <p>Join thousands of donors who are making a difference every day.</p>
+                <a href="signup.html" class="btn btn-primary btn-large">
+                    <i class="fas fa-user-plus"></i> Register Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <i class="fas fa-tint"></i>
+                        <span>RakhtSeva</span>
+                    </a>
+                    <p>Connecting donors with those in need. Every drop of blood donated is a gift of life.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="donate.html">Donate Blood</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#faq">FAQs</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Account</h4>
+                    <ul>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="signup.html">Sign Up</a></li>
+                        <li><a href="donate.html">Get Certificate</a></li>
+                        <li><a href="admin.html"><i class="fas fa-user-shield"></i> Admin Panel</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Health Street, Medical City</p>
+                    <p><i class="fas fa-phone"></i> +91 1800-123-4567</p>
+                    <p><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e48d8a828ba496858f8c9097819285ca8b9683">[email&#160;protected]</a></p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-credits">
+                    <p>&copy; 2026 RakhtSeva. All Rights Reserved. | Made with <i class="fas fa-heart"></i> for humanity</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <i class="fas fa-check-circle"></i>
+            <span id="toastMessage">Success!</span>
+        </div>
+    </div>
+
+    <div class="emergency-float-btn" id="emergencyFloatBtn" title="Emergency Blood Request">
+        <div class="emergency-pulse"></div>
+        <i class="fas fa-ambulance"></i>
+    </div>
+
+    <div class="modal" id="emergencyModal">
+        <div class="modal-overlay" id="emergencyModalOverlay"></div>
+        <div class="modal-content modal-emergency">
+            <button class="modal-close" id="emergencyModalClose">&times;</button>
+            
+            <div class="emergency-header">
+                <div class="emergency-icon-large">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <h2>🚨 Emergency Blood Request</h2>
+                <p>Submit an urgent blood request - Compatible donors will be notified immediately</p>
+            </div>
+            
+            <form class="emergency-form" id="emergencyForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Patient Name <span class="required">*</span></label>
+                        <input type="text" id="emergencyPatientName" placeholder="Enter patient name" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-tint"></i> Blood Group Needed <span class="required">*</span></label>
+                        <select id="emergencyBloodGroup" required>
+                            <option value="">Select Blood Group</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-hospital"></i> Hospital <span class="required">*</span></label>
+                        <input type="text" id="emergencyHospital" placeholder="Hospital name" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-phone"></i> Contact Number <span class="required">*</span></label>
+                        <input type="tel" id="emergencyPhone" placeholder="10-digit number" maxlength="10" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-clock"></i> Time Remaining</label>
+                    <div class="time-selector">
+                        <button type="button" class="time-btn active" data-hours="2">2 Hours</button>
+                        <button type="button" class="time-btn" data-hours="6">6 Hours</button>
+                        <button type="button" class="time-btn" data-hours="12">12 Hours</button>
+                        <button type="button" class="time-btn" data-hours="24">24 Hours</button>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-emergency btn-block">
+                    <i class="fas fa-paper-plane"></i> Send Emergency Alert
+                </button>
+            </form>
+            
+            <div class="active-emergencies" id="activeEmergencies">
+                <h3><i class="fas fa-exclamation-triangle"></i> Active Emergency Alerts</h3>
+                <div class="emergency-list" id="emergencyList">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="reminder-popup" id="reminderPopup">
+        <div class="reminder-content">
+            <button class="reminder-close" id="reminderClose">&times;</button>
+            <div class="reminder-icon">
+                <i class="fas fa-bell"></i>
+            </div>
+            <h3>Time to Donate Again! 🎉</h3>
+            <p>Your body has fully recovered. You can save 3 more lives!</p>
+            <div class="reminder-info">
+                <span><i class="fas fa-calendar-check"></i> Last Donation: <strong id="lastDonationDate">-</strong></span>
+                <span><i class="fas fa-clock"></i> Days Since: <strong id="daysSinceDonation">-</strong></span>
+            </div>
+            <a href="donate.html" class="btn btn-primary">
+                <i class="fas fa-hand-holding-heart"></i> Donate Now
+            </a>
+   
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

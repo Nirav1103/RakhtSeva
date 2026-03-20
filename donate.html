@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - RakhtSeva</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Great Vibes font for certificate -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom CSS -->
+    <!-- Bootstrap CSS (loaded before custom CSS so our styles always win) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <!-- ========== NAVIGATION BAR ========== -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-tint"></i>
+                <span>RakhtSeva</span>
+            </a>
+            
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="donate.html" class="nav-link active">Dashboard</a></li>
+                <li id="loginNavItem"><a href="login.html" class="nav-link">Login</a></li>
+                <li id="signupNavItem"><a href="signup.html" class="nav-link btn-signup">Sign Up</a></li>
+                <li id="userNavItem" style="display: none;">
+                    <div class="user-menu">
+                        <span class="user-name" id="navUserName"><i class="fas fa-user-circle"></i> User</span>
+                        <button class="btn-logout" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                </li>
+                <!-- Dark Mode Toggle - At the end -->
+                <li class="theme-toggle-wrapper">
+                    <div class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+                        <i class="fas fa-moon" id="themeIcon"></i>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ========== DASHBOARD SECTION (For non-logged in users) ========== -->
+    <section class="dashboard-section" id="dashboardSection">
+        <div class="container">
+            <!-- Welcome Banner -->
+            <div class="welcome-banner">
+                <div class="welcome-content">
+                    <h1><i class="fas fa-tint"></i> Welcome to RakhtSeva</h1>
+                    <p>India's Premier Blood Donation Platform - Connecting Donors with Those in Need</p>
+                    <div class="welcome-actions" id="welcomeActions">
+                        <a href="login.html" class="btn btn-primary">
+                            <i class="fas fa-sign-in-alt"></i> Login to Donate
+                        </a>
+                        <a href="signup.html" class="btn btn-secondary">
+                            <i class="fas fa-user-plus"></i> Create Account
+                        </a>
+                    </div>
+                </div>
+                <div class="welcome-illustration">
+                    <div class="blood-bag-animation">
+                        <i class="fas fa-hand-holding-medical"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About Dashboard Section -->
+            <div class="dashboard-about">
+                <div class="section-header">
+                    <h2>What is RakhtSeva?</h2>
+                    <p>Learn about our mission to save lives through blood donation</p>
+                </div>
+                
+                <div class="about-features">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h3>Life-Saving Mission</h3>
+                        <p>RakhtSeva connects blood donors with patients in need. Every donation can save up to 3 lives, making you a real-life hero.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h3>Digital Certificates</h3>
+                        <p>After donating blood, receive a beautiful digital certificate as a token of appreciation for your noble contribution.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Track Your Impact</h3>
+                        <p>Monitor your donation history, track lives saved, and see how your contributions make a difference in the community.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-hospital"></i>
+                        </div>
+                        <h3>Partner Network</h3>
+                        <p>We work with 120+ hospitals and blood banks across 50+ cities to ensure blood reaches those who need it most.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blood Request Section - Available to Everyone -->
+            <div class="blood-request-section" id="bloodRequestPublic">
+                <div class="section-header">
+                    <h2><i class="fas fa-ambulance"></i> Need Blood Urgently?</h2>
+                    <p>Submit a blood request and connect with available donors in your area</p>
+                </div>
+                
+                <div class="request-form-card">
+                    <form class="blood-request-form" id="bloodRequestFormPublic">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="reqPatientName">
+                                    <i class="fas fa-user"></i> Patient Name <span class="required">*</span>
+                                </label>
+                                <input type="text" id="reqPatientName" name="patientName" placeholder="Enter patient name" required>
+                                <span class="error-message" id="reqPatientNameError"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="reqBloodGroup">
+                                    <i class="fas fa-tint"></i> Blood Group Needed <span class="required">*</span>
+                                </label>
+                                <select id="reqBloodGroup" name="bloodGroup" required>
+                                    <option value="">Select Blood Group</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                </select>
+                                <span class="error-message" id="reqBloodGroupError"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="reqUnits">
+                                    <i class="fas fa-flask"></i> Units Required <span class="required">*</span>
+                                </label>
+                                <select id="reqUnits" name="units" required>
+                                    <option value="">Select Units</option>
+                                    <option value="1">1 Unit</option>
+                                    <option value="2">2 Units</option>
+                                    <option value="3">3 Units</option>
+                                    <option value="4">4 Units</option>
+                                    <option value="5+">5+ Units</option>
+                                </select>
+                                <span class="error-message" id="reqUnitsError"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="reqUrgency">
+                                    <i class="fas fa-exclamation-triangle"></i> Urgency Level <span class="required">*</span>
+                                </label>
+                                <select id="reqUrgency" name="urgency" required>
+                                    <option value="">Select Urgency</option>
+                                    <option value="critical">🔴 Critical - Need within 2 hours</option>
+                                    <option value="urgent">🟠 Urgent - Need within 24 hours</option>
+                                    <option value="planned">🟢 Planned - Scheduled surgery</option>
+                                </select>
+                                <span class="error-message" id="reqUrgencyError"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="reqHospital">
+                                    <i class="fas fa-hospital"></i> Hospital Name <span class="required">*</span>
+                                </label>
+                                <input type="text" id="reqHospital" name="hospital" placeholder="Enter hospital name" required>
+                                <span class="error-message" id="reqHospitalError"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="reqCity">
+                                    <i class="fas fa-map-marker-alt"></i> City <span class="required">*</span>
+                                </label>
+                                <input type="text" id="reqCity" name="city" placeholder="Enter city name" required>
+                                <span class="error-message" id="reqCityError"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="reqContactName">
+                                    <i class="fas fa-user-friends"></i> Contact Person <span class="required">*</span>
+                                </label>
+                                <input type="text" id="reqContactName" name="contactName" placeholder="Name of contact person" required>
+                                <span class="error-message" id="reqContactNameError"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="reqContactPhone">
+                                    <i class="fas fa-phone"></i> Contact Phone <span class="required">*</span>
+                                </label>
+                                <input type="tel" id="reqContactPhone" name="contactPhone" placeholder="10-digit phone number" required maxlength="10">
+                                <span class="error-message" id="reqContactPhoneError"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reqNotes">
+                                <i class="fas fa-sticky-note"></i> Additional Notes
+                            </label>
+                            <textarea id="reqNotes" name="notes" placeholder="Any additional information (e.g., patient condition, room number)" rows="2"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block btn-request">
+                            <i class="fas fa-paper-plane"></i> Submit Blood Request
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+
+
+
+
+            <!-- Blood Compatibility Chart Section -->
+            <div class="compatibility-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-exchange-alt"></i> Blood Type Compatibility Chart</h2>
+                    <p>Understanding which blood types can donate to and receive from each other</p>
+                </div>
+                
+                <!-- Interactive Compatibility Chart -->
+                <div class="compatibility-container">
+                    <!-- Blood Type Selector -->
+                    <div class="blood-selector">
+                        <h3><i class="fas fa-hand-pointer"></i> Select Your Blood Type</h3>
+                        <div class="blood-type-buttons">
+                            <button class="blood-type-btn active" data-type="A+">A+</button>
+                            <button class="blood-type-btn" data-type="A-">A-</button>
+                            <button class="blood-type-btn" data-type="B+">B+</button>
+                            <button class="blood-type-btn" data-type="B-">B-</button>
+                            <button class="blood-type-btn" data-type="O+">O+</button>
+                            <button class="blood-type-btn" data-type="O-">O-</button>
+                            <button class="blood-type-btn" data-type="AB+">AB+</button>
+                            <button class="blood-type-btn" data-type="AB-">AB-</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Compatibility Display -->
+                    <div class="compatibility-display">
+                        <div class="compatibility-card donate-to">
+                            <div class="compat-header">
+                                <i class="fas fa-arrow-right"></i>
+                                <h4>Can Donate To</h4>
+                            </div>
+                            <div class="compat-blood-types" id="canDonateTo">
+                                <span class="compat-badge">A+</span>
+                                <span class="compat-badge">AB+</span>
+                            </div>
+                            <p class="compat-info">Your blood can help these recipients</p>
+                        </div>
+                        
+                        <div class="selected-blood-display">
+                            <div class="selected-blood-circle">
+                                <span id="selectedBloodType">A+</span>
+                            </div>
+                            <p>Selected Blood Type</p>
+                        </div>
+                        
+                        <div class="compatibility-card receive-from">
+                            <div class="compat-header">
+                                <i class="fas fa-arrow-left"></i>
+                                <h4>Can Receive From</h4>
+                            </div>
+                            <div class="compat-blood-types" id="canReceiveFrom">
+                                <span class="compat-badge">A+</span>
+                                <span class="compat-badge">A-</span>
+                                <span class="compat-badge">O+</span>
+                                <span class="compat-badge">O-</span>
+                            </div>
+                            <p class="compat-info">You can receive blood from these donors</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Full Compatibility Matrix -->
+                    <div class="compatibility-matrix">
+                        <h3><i class="fas fa-table"></i> Complete Blood Compatibility Matrix</h3>
+                        <div class="matrix-wrapper">
+                            <table class="matrix-table">
+                                <thead>
+                                    <tr>
+                                        <th class="matrix-corner">
+                                            <span class="donor-label">Donor →</span>
+                                            <span class="recipient-label">↓ Recipient</span>
+                                        </th>
+                                        <th>O-</th>
+                                        <th>O+</th>
+                                        <th>A-</th>
+                                        <th>A+</th>
+                                        <th>B-</th>
+                                        <th>B+</th>
+                                        <th>AB-</th>
+                                        <th>AB+</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="row-header">O-</td>
+                                        <td class="compatible"><i class="fas fa-check"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">O+</td>
+                                        <td class="compatible"><i class="fas fa-check"></i></td>
+                                        <td class="compatible"><i class="fas fa-check"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">A-</td>
+                                        <td class="compatible"><i class="fas fa-check"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="compatible"><i class="fas fa-check"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">A+</td>
+                                        <td class="compatible"><i class="fas fa-check"></i></td>
+                                        <td class="compatible"><i class="fas fa-check"></i></td>
+                                        <td class="compatible"><i class="fas fa-check"></i></td>
+                                        <td class="compatible"><i class="fas fa-check"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">B-</td>
+                                        <td class="compatible"><i class="fas fa-check"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="compatible"><i class="fas fa-check"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">B+</td>
+                                        <td class="compatible"><i class="fas fa-check"></i></td>
+                                        <td class="compatible"><i class="fas fa-check"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="compatible"><i class="fas fa-check"></i></td>
+                                        <td class="compatible"><i class="fas fa-check"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">AB-</td>
+                                        <td class="compatible"><i class="fas fa-check"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="compatible"><i class="fas fa-check"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="compatible"><i class="fas fa-check"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                        <td class="compatible"><i class="fas fa-check"></i></td>
+                                        <td class="incompatible"><i class="fas fa-times"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">AB+</td>
+                                        <td class="compatible"><i class="fas fa-check"></i></td>
+                                        <td class="compatible"><i class="fas fa-check"></i></td>
+                                        <td class="compatible"><i class="fas fa-check"></i></td>
+                                        <td class="compatible"><i class="fas fa-check"></i></td>
+                                        <td class="compatible"><i class="fas fa-check"></i></td>
+                                        <td class="compatible"><i class="fas fa-check"></i></td>
+                                        <td class="compatible"><i class="fas fa-check"></i></td>
+                                        <td class="compatible"><i class="fas fa-check"></i></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Special Blood Types Info -->
+                    <div class="special-types-info">
+                        <div class="special-type-card universal-donor">
+                            <div class="special-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="special-content">
+                                <h4>O- : Universal Donor</h4>
+                                <p>O negative blood can be given to anyone! It's the most needed blood type for emergencies when there's no time to determine the patient's blood type.</p>
+                                <div class="special-badge">Can donate to ALL blood types</div>
+                            </div>
+                        </div>
+                        <div class="special-type-card universal-recipient">
+                            <div class="special-icon">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <div class="special-content">
+                                <h4>AB+ : Universal Recipient</h4>
+                                <p>AB positive individuals can receive blood from any blood type! This makes them very flexible in emergency situations.</p>
+                                <div class="special-badge recipient">Can receive from ALL blood types</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blood Facts Section -->
+            <div class="blood-facts">
+                <div class="section-header">
+                    <h2>Did You Know?</h2>
+                    <p>Important facts about blood donation</p>
+                </div>
+                <div class="facts-grid">
+                    <div class="fact-card">
+                        <div class="fact-number">1</div>
+                        <p>Every 2 seconds, someone in India needs blood</p>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-number">2</div>
+                        <p>Only 37% of the population is eligible to donate blood</p>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-number">3</div>
+                        <p>One unit of blood can save up to 3 lives</p>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-number">4</div>
+                        <p>Blood cannot be manufactured – it can only come from donors</p>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-number">5</div>
+                        <p>Your body replaces donated blood within 24-48 hours</p>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-number">6</div>
+                        <p>Regular blood donation reduces harmful iron stores</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Login CTA for non-logged users -->
+            <div class="login-cta" id="loginCta">
+                <div class="cta-content">
+                    <i class="fas fa-lock"></i>
+                    <h3>Login Required for Donation</h3>
+                    <p>Please login or create an account to register your blood donation and receive your certificate of appreciation.</p>
+                    <div class="cta-buttons">
+                        <a href="login.html" class="btn btn-primary">
+                            <i class="fas fa-sign-in-alt"></i> Login Now
+                        </a>
+                        <a href="signup.html" class="btn btn-secondary">
+                            <i class="fas fa-user-plus"></i> Sign Up Free
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== LOGGED IN USER SECTION ========== -->
+    <section class="donate-section" id="donateSection" style="display: none;">
+        <div class="container">
+            <!-- User Welcome Message -->
+            <div class="user-welcome">
+                <div class="welcome-text">
+                    <h2>Welcome back, <span id="welcomeUserName">Donor</span>! 🎉</h2>
+                    <p>Ready to save more lives? Register your donation or help someone in need.</p>
+                </div>
+
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="dashboard-tabs">
+                <button class="tab-btn active" data-tab="register">
+                    <i class="fas fa-plus-circle"></i> Register Donation
+                </button>
+                <button class="tab-btn" data-tab="history">
+                    <i class="fas fa-history"></i> My Donations
+                </button>
+                <button class="tab-btn" data-tab="leaderboard">
+                    <i class="fas fa-trophy"></i> Leaderboard
+                </button>
+
+                <button class="tab-btn" data-tab="available">
+                    <i class="fas fa-users"></i> Available Donors
+                </button>
+            </div>
+
+            <!-- Tab Content: Register Donation -->
+            <div class="tab-content active" id="tab-register">
+                <div class="section-header">
+                    <h2>Register Blood Donation</h2>
+                    <p>Record your donation details to track your impact and receive your certificate</p>
+                </div>
+                
+                <div class="donate-container">
+                    <div class="donate-form-wrapper" id="donationFormWrapper">
+                        <div class="donate-card">
+                            <div class="donate-card-header">
+                                <div class="donate-icon">
+                                    <i class="fas fa-hand-holding-heart"></i>
+                                </div>
+                                <h3>Donation Details</h3>
+                                <p>Please fill in your donation information</p>
+                            </div>
+                            
+                            <form class="donate-form" id="donationForm">
+                                <!-- Donor Name -->
+                                <div class="form-group">
+                                    <label for="donorName">
+                                        <i class="fas fa-user"></i> Your Name
+                                    </label>
+                                    <input 
+                                        type="text" 
+                                        id="donorName" 
+                                        name="donorName" 
+                                        placeholder="Enter your full name"
+                                        required
+                                    >
+                                    <span class="error-message" id="donorNameError"></span>
+                                </div>
+                                
+                                <!-- Blood Group -->
+                                <div class="form-group">
+                                    <label for="donorBloodGroup">
+                                        <i class="fas fa-tint"></i> Blood Group
+                                    </label>
+                                    <select id="donorBloodGroup" name="donorBloodGroup" required>
+                                        <option value="">Select Blood Group</option>
+                                        <option value="A+">A+</option>
+                                        <option value="A-">A-</option>
+                                        <option value="B+">B+</option>
+                                        <option value="B-">B-</option>
+                                        <option value="O+">O+</option>
+                                        <option value="O-">O-</option>
+                                        <option value="AB+">AB+</option>
+                                        <option value="AB-">AB-</option>
+                                    </select>
+                                    <span class="error-message" id="donorBloodGroupError"></span>
+                                </div>
+                                
+                                <!-- Date of Donation -->
+                                <div class="form-group">
+                                    <label for="donationDate">
+                                        <i class="fas fa-calendar-alt"></i> Date of Donation
+                                    </label>
+                                    <input 
+                                        type="date" 
+                                        id="donationDate" 
+                                        name="donationDate" 
+                                        required
+                                    >
+                                    <span class="error-message" id="donationDateError"></span>
+                                    <span class="input-hint">
+                                        <i class="fas fa-info-circle"></i> Certificate will be available for download after this date
+                                    </span>
+                                </div>
+                                
+                                <!-- Location -->
+                                <div class="form-group">
+                                    <label for="donationLocation">
+                                        <i class="fas fa-map-marker-alt"></i> Donation Location
+                                    </label>
+                                    <select id="donationLocation" name="donationLocation" required>
+                                        <option value="">Select Location</option>
+                                        <option value="City Hospital Blood Bank">City Hospital Blood Bank</option>
+                                        <option value="Red Cross Center">Red Cross Center</option>
+                                        <option value="Community Health Center">Community Health Center</option>
+                                        <option value="Mobile Blood Drive">Mobile Blood Drive</option>
+                                        <option value="University Medical Center">University Medical Center</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    <span class="error-message" id="donationLocationError"></span>
+                                </div>
+                                
+                                <!-- Custom Location -->
+                                <div class="form-group" id="customLocationGroup" style="display: none;">
+                                    <label for="customLocation">
+                                        <i class="fas fa-edit"></i> Specify Location
+                                    </label>
+                                    <input 
+                                        type="text" 
+                                        id="customLocation" 
+                                        name="customLocation" 
+                                        placeholder="Enter donation location"
+                                    >
+                                    <span class="error-message" id="customLocationError"></span>
+                                </div>
+                                
+                                <!-- Units Donated -->
+                                <div class="form-group">
+                                    <label for="unitsDonated">
+                                        <i class="fas fa-flask"></i> Units Donated
+                                    </label>
+                                    <select id="unitsDonated" name="unitsDonated" required>
+                                        <option value="">Select Units</option>
+                                        <option value="1">1 Unit (350ml)</option>
+                                        <option value="2">2 Units (450ml)</option>
+                                    </select>
+                                    <span class="error-message" id="unitsDonatedError"></span>
+                                </div>
+                                
+                                <!-- Submit Button -->
+                                <button type="submit" class="btn btn-primary btn-block btn-generate">
+                                    <i class="fas fa-check-circle"></i> Register Donation
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <!-- Info Cards -->
+                        <div class="info-cards">
+                            <div class="info-card">
+                                <i class="fas fa-heartbeat"></i>
+                                <h4>Save 3 Lives</h4>
+                                <p>Your single donation can help save up to 3 lives!</p>
+                            </div>
+                            <div class="info-card">
+                                <i class="fas fa-clock"></i>
+                                <h4>Certificate After Donation</h4>
+                                <p>Download your certificate once the donation date has passed</p>
+                            </div>
+                            <div class="info-card">
+                                <i class="fas fa-shield-alt"></i>
+                                <h4>100% Safe</h4>
+                                <p>Sterile equipment used for every donation</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Donation History -->
+            <div class="tab-content" id="tab-history">
+                <div class="section-header">
+                    <h2>My Donation History</h2>
+                    <p>View all your registered donations and download certificates</p>
+                </div>
+                
+                <div class="donation-history-full" id="donationHistoryFull">
+                    <div class="history-list-full" id="historyListFull">
+                        <p class="no-history">No donations recorded yet. Register your first donation above!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Leaderboard -->
+            <div class="tab-content" id="tab-leaderboard">
+                <div class="section-header">
+                    <h2><i class="fas fa-trophy" style="color: #FFD700;"></i> Donor Leaderboard</h2>
+                    <p>Top donors who are saving the most lives</p>
+                </div>
+                
+                <!-- Badge Legend -->
+                <div class="badge-legend-dashboard">
+                    <div class="badge-item-dash">
+                        <div class="badge-icon gold"><i class="fas fa-crown"></i></div>
+                        <span>Gold (10+)</span>
+                    </div>
+                    <div class="badge-item-dash">
+                        <div class="badge-icon silver"><i class="fas fa-medal"></i></div>
+                        <span>Silver (5-9)</span>
+                    </div>
+                    <div class="badge-item-dash">
+                        <div class="badge-icon bronze"><i class="fas fa-award"></i></div>
+                        <span>Bronze (3-4)</span>
+                    </div>
+                    <div class="badge-item-dash">
+                        <div class="badge-icon starter"><i class="fas fa-heart"></i></div>
+                        <span>New Hero (1-2)</span>
+                    </div>
+                </div>
+                
+                <!-- Your Current Rank -->
+                <div class="your-rank-dashboard" id="yourRankDashboard">
+                    <div class="your-rank-content">
+                        <div class="your-rank-left">
+                            <div class="your-rank-badge-icon" id="yourBadgeIconDash">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="your-rank-details">
+                                <h4>Your Current Rank</h4>
+                                <p>Rank <span id="yourRankDash">#1</span> with <span id="yourDonationsDash">0</span> donations</p>
+                            </div>
+                        </div>
+                        <div class="your-rank-right">
+                            <div class="next-badge-info" id="nextBadgeInfo">
+                                <span>Next badge in</span>
+                                <strong id="donationsToNext">3 donations</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-to-next">
+                        <div class="progress-bar-lb" id="progressBarLb" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <!-- Leaderboard Table -->
+                <div class="leaderboard-container-dash">
+                    <div class="leaderboard-header-dash">
+                        <span>Rank</span>
+                        <span>Donor</span>
+                        <span>Blood</span>
+                        <span>Donations</span>
+                        <span>Lives Saved</span>
+                        <span>Badge</span>
+                    </div>
+                    <div class="leaderboard-body-dash" id="leaderboardBodyDash">
+                        <div class="leaderboard-empty-dash">
+                            <i class="fas fa-trophy"></i>
+                            <p>Be the first on the leaderboard!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Tab Content: Available Donors -->
+            <div class="tab-content" id="tab-available">
+                <div class="section-header">
+                    <h2>Available Donors</h2>
+                    <p>Registered donors who can be contacted for blood donation</p>
+                </div>
+                
+                <div class="filter-bar">
+                    <label><i class="fas fa-filter"></i> Filter by Blood Group:</label>
+                    <select id="filterBloodGroup">
+                        <option value="all">All Blood Groups</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                    </select>
+                </div>
+                
+                <div class="donors-grid" id="availableDonorsGrid">
+                    <div class="no-donors">
+                        <i class="fas fa-users"></i>
+                        <p>No donors registered yet. Be the first to donate!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CERTIFICATE MODAL ========== -->
+    <div class="modal" id="certificateModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            
+            <!-- Certificate -->
+            <div class="certificate" id="certificate">
+                <div class="certificate-border">
+                    <div class="corner corner-tl"></div>
+                    <div class="corner corner-tr"></div>
+                    <div class="corner corner-bl"></div>
+                    <div class="corner corner-br"></div>
+                    
+                    <div class="certificate-content">
+                        <div class="certificate-header">
+                            <div class="cert-logo">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <h1 class="cert-org">RakhtSeva</h1>
+                            <p class="cert-tagline">Blood Donation Initiative</p>
+                        </div>
+                        
+                        <div class="certificate-title">
+                            <h2>Certificate of Appreciation</h2>
+                            <div class="title-decoration">
+                                <span class="deco-line"></span>
+                                <i class="fas fa-heart"></i>
+                                <span class="deco-line"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="certificate-body">
+                            <p class="presented-to">This certificate is proudly presented to</p>
+                            <h3 class="donor-name" id="certDonorName">John Doe</h3>
+                            <p class="cert-text">
+                                In recognition of their selfless act of donating 
+                                <span class="highlight" id="certUnits">1 Unit</span> of 
+                                <span class="highlight" id="certBloodGroup">O+</span> blood on 
+                                <span class="highlight" id="certDate">January 1, 2026</span>
+                                at <span class="highlight" id="certLocation">City Hospital</span>.
+                            </p>
+                            <p class="cert-message">
+                                Your generous contribution has helped save lives and brought hope to those in need.
+                                You are a true hero!
+                            </p>
+                        </div>
+                        
+                        <div class="blood-drops-cert">
+                            <i class="fas fa-tint"></i>
+                            <i class="fas fa-tint"></i>
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        
+                        <div class="certificate-footer">
+                            <div class="cert-signature">
+                                <div class="signature-line"></div>
+                                <p>Director, RakhtSeva</p>
+                            </div>
+                            <div class="cert-seal">
+                                <div class="seal-circle">
+                                    <i class="fas fa-award"></i>
+                                    <span>VERIFIED</span>
+                                </div>
+                            </div>
+                            <div class="cert-signature">
+                                <div class="signature-line"></div>
+                                <p>Medical Officer</p>
+                            </div>
+                        </div>
+                        
+                        <div class="cert-id">
+                            <p>Certificate ID: <span id="certId">RS-2026-00001</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Certificate Actions -->
+            <div class="certificate-actions">
+                <button class="btn btn-secondary" id="downloadCert">
+                    <i class="fas fa-download"></i> Download Certificate
+                </button>
+                <button class="btn btn-primary" id="closeCertModal">
+                    <i class="fas fa-times"></i> Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== CONTACT DONOR MODAL ========== -->
+    <div class="modal" id="contactDonorModal">
+        <div class="modal-overlay" id="contactModalOverlay"></div>
+        <div class="modal-content modal-small">
+            <button class="modal-close" id="contactModalClose">&times;</button>
+            <div class="contact-modal-content">
+                <div class="contact-modal-header">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Contact Donor</h3>
+                </div>
+                <div class="contact-modal-body">
+                    <div class="contact-info-item">
+                        <i class="fas fa-user"></i>
+                        <span id="contactDonorName">John Doe</span>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="fas fa-tint"></i>
+                        <span id="contactDonorBlood">O+</span>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="fas fa-phone"></i>
+                        <span id="contactDonorPhone">9876543210</span>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span id="contactDonorEmail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2d474245436d48404c4441034e4240">[email&#160;protected]</a></span>
+                    </div>
+                </div>
+                <div class="contact-modal-actions">
+                    <a href="tel:" class="btn btn-primary" id="callDonorBtn">
+                        <i class="fas fa-phone"></i> Call Now
+                    </a>
+                    <a href="/cdn-cgi/l/email-protection#5e" class="btn btn-secondary" id="emailDonorBtn">
+                        <i class="fas fa-envelope"></i> Send Email
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <i class="fas fa-tint"></i>
+                        <span>RakhtSeva</span>
+                    </a>
+                    <p>Connecting donors with those in need. Every drop of blood donated is a gift of life.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="donate.html">Donate Blood</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#faq">FAQs</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Account</h4>
+                    <ul>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="signup.html">Sign Up</a></li>
+                        <li><a href="donate.html">Get Certificate</a></li>
+                        <li><a href="admin.html"><i class="fas fa-user-shield"></i> Admin Panel</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Health Street, Medical City</p>
+                    <p><i class="fas fa-phone"></i> +91 1800-123-4567</p>
+                    <p><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="721b1c141d320013191a06011704135c1d0015">[email&#160;protected]</a></p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-credits">
+                    <p>&copy; 2026 RakhtSeva. All Rights Reserved. | Made with <i class="fas fa-heart"></i> for humanity</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <i class="fas fa-check-circle"></i>
+            <span id="toastMessage">Success!</span>
+        </div>
+    </div>
+
+    <!-- ========== FLOATING EMERGENCY BUTTON ========== -->
+    <div class="emergency-float-btn" id="emergencyFloatBtn" title="Emergency Blood Request">
+        <div class="emergency-pulse"></div>
+        <i class="fas fa-ambulance"></i>
+    </div>
+
+    <!-- ========== EMERGENCY BLOOD ALERT MODAL ========== -->
+    <div class="modal" id="emergencyModal">
+        <div class="modal-overlay" id="emergencyModalOverlay"></div>
+        <div class="modal-content modal-emergency">
+            <button class="modal-close" id="emergencyModalClose">&times;</button>
+            
+            <div class="emergency-header">
+                <div class="emergency-icon-large">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <h2>🚨 Emergency Blood Request</h2>
+                <p>Submit an urgent blood request - Compatible donors will be notified immediately</p>
+            </div>
+            
+            <form class="emergency-form" id="emergencyForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Patient Name <span class="required">*</span></label>
+                        <input type="text" id="emergencyPatientName" placeholder="Enter patient name" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-tint"></i> Blood Group Needed <span class="required">*</span></label>
+                        <select id="emergencyBloodGroup" required>
+                            <option value="">Select Blood Group</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-hospital"></i> Hospital <span class="required">*</span></label>
+                        <input type="text" id="emergencyHospital" placeholder="Hospital name" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-phone"></i> Contact Number <span class="required">*</span></label>
+                        <input type="tel" id="emergencyPhone" placeholder="10-digit number" maxlength="10" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-clock"></i> Time Remaining</label>
+                    <div class="time-selector">
+                        <button type="button" class="time-btn active" data-hours="2">2 Hours</button>
+                        <button type="button" class="time-btn" data-hours="6">6 Hours</button>
+                        <button type="button" class="time-btn" data-hours="12">12 Hours</button>
+                        <button type="button" class="time-btn" data-hours="24">24 Hours</button>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-emergency btn-block">
+                    <i class="fas fa-paper-plane"></i> Send Emergency Alert
+                </button>
+            </form>
+            
+            <!-- Active Emergency Alerts -->
+            <div class="active-emergencies" id="activeEmergencies">
+                <h3><i class="fas fa-exclamation-triangle"></i> Active Emergency Alerts</h3>
+                <div class="emergency-list" id="emergencyList">
+                    <!-- Emergency alerts will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== DONATION REMINDER POPUP ========== -->
+    <div class="reminder-popup" id="reminderPopup">
+        <div class="reminder-content">
+            <button class="reminder-close" id="reminderClose">&times;</button>
+            <div class="reminder-icon">
+                <i class="fas fa-bell"></i>
+            </div>
+            <h3>Time to Donate Again! 🎉</h3>
+            <p>Your body has fully recovered. You can save 3 more lives!</p>
+            <div class="reminder-info">
+                <span><i class="fas fa-calendar-check"></i> Last Donation: <strong id="lastDonationDate">-</strong></span>
+                <span><i class="fas fa-clock"></i> Days Since: <strong id="daysSinceDonation">-</strong></span>
+            </div>
+            <button class="btn btn-primary" onclick="document.querySelector('[data-tab=\'register\']').click(); dismissReminder();">
+                <i class fa-hand-holding-heart"></i> Donate Now
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

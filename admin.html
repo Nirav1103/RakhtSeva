@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - RakhtSeva</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom CSS -->
+    <!-- Bootstrap CSS (loaded before custom CSS so our styles always win) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body class="admin-page">
+    <!-- ========== ADMIN LOGIN SECTION ========== -->
+    <section class="admin-login-section" id="adminLoginSection">
+        <div class="admin-login-container">
+            <div class="admin-login-card">
+                <div class="admin-login-header">
+                    <div class="admin-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h2>Admin Login</h2>
+                    <p>Access the RakhtSeva Admin Dashboard</p>
+                </div>
+                
+                <form class="admin-login-form" id="adminLoginForm">
+                    <div class="form-group">
+                        <label for="adminUsername">
+                            <i class="fas fa-user"></i> Username
+                        </label>
+                        <input type="text" id="adminUsername" placeholder="Enter admin username" required>
+                        <span class="error-message" id="adminUsernameError"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="adminPassword">
+                            <i class="fas fa-lock"></i> Password
+                        </label>
+                        <div class="password-wrapper">
+                            <input type="password" id="adminPassword" placeholder="Enter admin password" required>
+                            <button type="button" class="toggle-password" id="toggleAdminPassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <span class="error-message" id="adminPasswordError"></span>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-sign-in-alt"></i> Login to Dashboard
+                    </button>
+                </form>
+                
+                <div class="admin-login-footer">
+                    <p><i class="fas fa-info-circle"></i> Default: admin / admin123</p>
+                    <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Website</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ADMIN DASHBOARD ========== -->
+    <div class="admin-dashboard" id="adminDashboard" style="display: none;">
+        <!-- Admin Sidebar -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="sidebar-header">
+                <div class="admin-logo">
+                    <i class="fas fa-tint"></i>
+                    <span>RakhtSeva</span>
+                </div>
+                <span class="admin-badge">ADMIN</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#" class="sidebar-link active" data-section="overview">
+                    <i class="fas fa-th-large"></i>
+                    <span>Overview</span>
+                </a>
+                <a href="#" class="sidebar-link" data-section="users">
+                    <i class="fas fa-users"></i>
+                    <span>Manage Users</span>
+                    <span class="nav-badge" id="userCount">0</span>
+                </a>
+                <a href="#" class="sidebar-link" data-section="donations">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <span>Donations</span>
+                    <span class="nav-badge" id="donationCount">0</span>
+                </a>
+                <a href="#" class="sidebar-link" data-section="requests">
+                    <i class="fas fa-ambulance"></i>
+                    <span>Blood Requests</span>
+                    <span class="nav-badge urgent" id="requestCount">0</span>
+                </a>
+                <a href="#" class="sidebar-link" data-section="emergencies">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Emergencies</span>
+                    <span class="nav-badge danger" id="emergencyCount">0</span>
+                </a>
+
+                <a href="#" class="sidebar-link" data-section="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="admin-profile">
+                    <div class="admin-avatar">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="admin-info">
+                        <h4 id="adminName">Administrator</h4>
+                        <p>Super Admin</p>
+                    </div>
+                </div>
+                <button class="btn-admin-logout" id="adminLogoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Admin Main Content -->
+        <main class="admin-main">
+            <!-- Top Bar -->
+            <header class="admin-topbar">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <div class="topbar-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search users, donations, requests..." id="adminSearch">
+                </div>
+                
+                <div class="topbar-actions">
+                    <button class="topbar-btn" id="refreshData" title="Refresh Data">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <div class="topbar-notifications" style="position:relative;">
+                        <button class="topbar-btn" id="notificationBtn" title="Notifications">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge" id="notifBadge">3</span>
+                        </button>
+                        <!-- Notification Dropdown Panel -->
+                        <div class="notification-panel" id="notificationPanel" style="display:none; position:absolute; right:0; top:110%; width:320px; background:var(--card-bg, #fff); border:1px solid var(--border-color, #e0e0e0); border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,0.15); z-index:9999; overflow:hidden;">
+                            <div style="padding:1rem 1.2rem; border-bottom:1px solid var(--border-color,#e0e0e0); display:flex; justify-content:space-between; align-items:center;">
+                                <strong style="font-size:1rem;">Notifications</strong>
+                                <button onclick="document.getElementById('notifBadge').textContent='0'; document.getElementById('notifBadge').style.display='none';" style="background:none;border:none;color:#e53e3e;cursor:pointer;font-size:0.8rem;">Clear all</button>
+                            </div>
+                            <div style="max-height:300px; overflow-y:auto;">
+                                <div style="padding:0.9rem 1.2rem; border-bottom:1px solid var(--border-color,#f0f0f0); display:flex; gap:0.8rem; align-items:flex-start;">
+                                    <div style="width:36px;height:36px;border-radius:50%;background:#ffe5e5;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-tint" style="color:#e53e3e;"></i></div>
+                                    <div><p style="margin:0;font-size:0.88rem;font-weight:600;">Emergency Blood Request</p><p style="margin:0;font-size:0.8rem;color:#888;">B+ blood needed urgently at City Hospital</p><p style="margin:0;font-size:0.75rem;color:#aaa;">2 minutes ago</p></div>
+                                </div>
+                                <div style="padding:0.9rem 1.2rem; border-bottom:1px solid var(--border-color,#f0f0f0); display:flex; gap:0.8rem; align-items:flex-start;">
+                                    <div style="width:36px;height:36px;border-radius:50%;background:#e8f5e9;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-user-plus" style="color:#38a169;"></i></div>
+                                    <div><p style="margin:0;font-size:0.88rem;font-weight:600;">New Donor Registered</p><p style="margin:0;font-size:0.8rem;color:#888;">Rahul Sharma joined as an O+ donor</p><p style="margin:0;font-size:0.75rem;color:#aaa;">15 minutes ago</p></div>
+                                </div>
+                                <div style="padding:0.9rem 1.2rem; display:flex; gap:0.8rem; align-items:flex-start;">
+                                    <div style="width:36px;height:36px;border-radius:50%;background:#ebf8ff;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-check-circle" style="color:#3182ce;"></i></div>
+                                    <div><p style="margin:0;font-size:0.88rem;font-weight:600;">Donation Completed</p><p style="margin:0;font-size:0.8rem;color:#888;">Priya Patel completed her donation at Apollo</p><p style="margin:0;font-size:0.75rem;color:#aaa;">1 hour ago</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+                        <i class="fas fa-moon" id="themeIcon"></i>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="admin-content">
+                <!-- ========== OVERVIEW SECTION ========== -->
+                <section class="admin-section active" id="section-overview">
+                    <div class="section-header">
+                        <h1><i class="fas fa-th-large"></i> Dashboard Overview</h1>
+                        <p>Welcome back, Administrator! Here's what's happening today.</p>
+                    </div>
+                    
+                    <!-- Stats Cards -->
+                    <div class="admin-stats-grid">
+                        <div class="admin-stat-card stat-users">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-details">
+                                <h3 id="statTotalUsers">0</h3>
+                                <p>Total Users</p>
+                                <span class="stat-change positive"><i class="fas fa-arrow-up"></i> 12% this month</span>
+                            </div>
+                        </div>
+                        <div class="admin-stat-card stat-donations">
+                            <div class="stat-icon">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <div class="stat-details">
+                                <h3 id="statTotalDonations">0</h3>
+                                <p>Total Donations</p>
+                                <span class="stat-change positive"><i class="fas fa-arrow-up"></i> 8% this month</span>
+                            </div>
+                        </div>
+                        <div class="admin-stat-card stat-lives">
+                            <div class="stat-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="stat-details">
+                                <h3 id="statLivesSaved">0</h3>
+                                <p>Lives Saved</p>
+                                <span class="stat-change positive"><i class="fas fa-arrow-up"></i> 24% this month</span>
+                            </div>
+                        </div>
+                        <div class="admin-stat-card stat-requests">
+                            <div class="stat-icon">
+                                <i class="fas fa-ambulance"></i>
+                            </div>
+                            <div class="stat-details">
+                                <h3 id="statActiveRequests">0</h3>
+                                <p>Active Requests</p>
+                                <span class="stat-change negative"><i class="fas fa-arrow-down"></i> Needs attention</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Activity & Quick Actions -->
+                    <div class="admin-row">
+                        <div class="admin-card recent-activity">
+                            <h3><i class="fas fa-clock"></i> Recent Activity</h3>
+                            <div class="activity-list" id="recentActivityList">
+                                <!-- Activity items will be loaded here -->
+                            </div>
+                        </div>
+                        <div class="admin-card quick-actions">
+                            <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+                            <div class="quick-actions-grid">
+                                <button class="quick-action-btn" onclick="showSection('users')">
+                                    <i class="fas fa-user-plus"></i>
+                                    <span>Add User</span>
+                                </button>
+                                <button class="quick-action-btn" onclick="showSection('requests')">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Approve Requests</span>
+                                </button>
+                                <button class="quick-action-btn" onclick="exportData()">
+                                    <i class="fas fa-download"></i>
+                                    <span>Export Data</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========== MANAGE USERS SECTION ========== -->
+                <section class="admin-section" id="section-users">
+                    <div class="section-header">
+                        <h1><i class="fas fa-users"></i> Manage Users</h1>
+                        <p>View, edit, and manage all registered users</p>
+                    </div>
+                    
+                    <!-- User Filters -->
+                    <div class="admin-filters">
+                        <div class="filter-group">
+                            <label>Blood Group:</label>
+                            <select id="filterUserBlood">
+                                <option value="all">All Blood Groups</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Status:</label>
+                            <select id="filterUserStatus">
+                                <option value="all">All Status</option>
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Sort By:</label>
+                            <select id="sortUsers">
+                                <option value="newest">Newest First</option>
+                                <option value="oldest">Oldest First</option>
+                                <option value="name">Name (A-Z)</option>
+                                <option value="donations">Most Donations</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" onclick="openAddUserModal()">
+                            <i class="fas fa-user-plus"></i> Add New User
+                        </button>
+                    </div>
+                    
+                    <!-- Users Table -->
+                    <div class="admin-table-container">
+                        <table class="admin-table" id="usersTable">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" id="selectAllUsers"></th>
+                                    <th>User</th>
+                                    <th>Email</th>
+                                    <th>Blood Group</th>
+                                    <th>Phone</th>
+                                    <th>Donations</th>
+                                    <th>Status</th>
+                                    <th>Joined</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody">
+                                <!-- Users will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="admin-pagination">
+                        <span class="pagination-info">Showing <span id="showingUsers">0</span> of <span id="totalUsersCount">0</span> users</span>
+                        <div class="pagination-buttons">
+                            <button class="pagination-btn" id="prevUsersPage"><i class="fas fa-chevron-left"></i></button>
+                            <span class="page-numbers" id="userPageNumbers"></span>
+                            <button class="pagination-btn" id="nextUsersPage"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========== DONATIONS SECTION ========== -->
+                <section class="admin-section" id="section-donations">
+                    <div class="section-header">
+                        <h1><i class="fas fa-hand-holding-heart"></i> Donation Records</h1>
+                        <p>View and manage all blood donation records</p>
+                    </div>
+                    
+                    <!-- Donation Stats -->
+                    <div class="donation-stats-row">
+                        <div class="mini-stat-card">
+                            <i class="fas fa-calendar-day"></i>
+                            <div>
+                                <h4 id="todayDonations">0</h4>
+                                <p>Today</p>
+                            </div>
+                        </div>
+                        <div class="mini-stat-card">
+                            <i class="fas fa-calendar-week"></i>
+                            <div>
+                                <h4 id="weekDonations">0</h4>
+                                <p>This Week</p>
+                            </div>
+                        </div>
+                        <div class="mini-stat-card">
+                            <i class="fas fa-calendar-alt"></i>
+                            <div>
+                                <h4 id="monthDonations">0</h4>
+                                <p>This Month</p>
+                            </div>
+                        </div>
+                        <div class="mini-stat-card">
+                            <i class="fas fa-flask"></i>
+                            <div>
+                                <h4 id="totalUnits">0</h4>
+                                <p>Total Units</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Donations Table -->
+                    <div class="admin-table-container">
+                        <table class="admin-table" id="donationsTable">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Donor</th>
+                                    <th>Blood Group</th>
+                                    <th>Units</th>
+                                    <th>Location</th>
+                                    <th>Date</th>
+                                    <th>Certificate</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="donationsTableBody">
+                                <!-- Donations will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- ========== BLOOD REQUESTS SECTION ========== -->
+                <section class="admin-section" id="section-requests">
+                    <div class="section-header">
+                        <h1><i class="fas fa-ambulance"></i> Blood Requests</h1>
+                        <p>Manage and approve blood requests from users</p>
+                    </div>
+                    
+                    <!-- Request Filters -->
+                    <div class="admin-filters">
+                        <div class="filter-group">
+                            <label>Status:</label>
+                            <select id="filterRequestStatus">
+                                <option value="all">All Requests</option>
+                                <option value="pending">Pending</option>
+                                <option value="approved">Approved</option>
+                                <option value="fulfilled">Fulfilled</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Urgency:</label>
+                            <select id="filterRequestUrgency">
+                                <option value="all">All Urgency</option>
+                                <option value="critical">🔴 Critical</option>
+                                <option value="urgent">🟠 Urgent</option>
+                                <option value="planned">🟢 Planned</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Blood Group:</label>
+                            <select id="filterRequestBlood">
+                                <option value="all">All Blood Groups</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Requests Grid -->
+                    <div class="requests-admin-grid" id="requestsAdminGrid">
+                        <!-- Requests will be loaded here -->
+                    </div>
+                </section>
+
+                <!-- ========== EMERGENCIES SECTION ========== -->
+                <section class="admin-section" id="section-emergencies">
+                    <div class="section-header">
+                        <h1><i class="fas fa-exclamation-triangle"></i> Emergency Alerts</h1>
+                        <p>Monitor and manage active emergency blood requests</p>
+                    </div>
+                    
+                    <!-- Emergency Stats -->
+                    <div class="emergency-stats">
+                        <div class="emergency-stat active-emergencies">
+                            <i class="fas fa-bolt"></i>
+                            <div>
+                                <h3 id="activeEmergencyCount">0</h3>
+                                <p>Active Emergencies</p>
+                            </div>
+                        </div>
+                        <div class="emergency-stat resolved-emergencies">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h3 id="resolvedEmergencyCount">0</h3>
+                                <p>Resolved Today</p>
+                            </div>
+                        </div>
+                        <div class="emergency-stat expired-emergencies">
+                            <i class="fas fa-times-circle"></i>
+                            <div>
+                                <h3 id="expiredEmergencyCount">0</h3>
+                                <p>Expired</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Emergency List -->
+                    <div class="emergency-admin-list" id="emergencyAdminList">
+                        <!-- Emergencies will be loaded here -->
+                    </div>
+                </section>
+
+
+
+                <!-- ========== SETTINGS SECTION ========== -->
+                <section class="admin-section" id="section-settings">
+                    <div class="section-header">
+                        <h1><i class="fas fa-cog"></i> Settings</h1>
+                        <p>Configure admin dashboard and website settings</p>
+                    </div>
+                    
+                    <div class="settings-container">
+                        <div class="settings-card">
+                            <h3><i class="fas fa-user-shield"></i> Admin Account</h3>
+                            <form id="adminSettingsForm">
+                                <div class="form-group">
+                                    <label>Admin Username</label>
+                                    <input type="text" id="settingsAdminUsername" value="admin">
+                                </div>
+                                <div class="form-group">
+                                    <label>Change Password</label>
+                                    <input type="password" id="settingsAdminPassword" placeholder="New password">
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Save Changes
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <div class="settings-card">
+                            <h3><i class="fas fa-database"></i> Data Management</h3>
+                            <div class="settings-actions">
+                                <button class="btn btn-secondary" onclick="exportAllData()">
+                                    <i class="fas fa-download"></i> Export All Data
+                                </button>
+                                <button class="btn btn-secondary" onclick="backupData()">
+                                    <i class="fas fa-cloud-upload-alt"></i> Backup Data
+                                </button>
+                                <button class="btn btn-danger" onclick="confirmResetData()">
+                                    <i class="fas fa-trash-alt"></i> Reset All Data
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-card">
+                            <h3><i class="fas fa-info-circle"></i> About RakhtSeva</h3>
+                            <div class="about-info">
+                                <p><strong>Version:</strong> 1.0.0</p>
+                                <p><strong>Platform:</strong> Blood Donation Management System</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- ========== MODALS ========== -->
+    
+    <!-- Edit User Modal -->
+    <div class="admin-modal" id="editUserModal">
+        <div class="admin-modal-overlay"></div>
+        <div class="admin-modal-content">
+            <div class="admin-modal-header">
+                <h3><i class="fas fa-user-edit"></i> Edit User</h3>
+                <button class="admin-modal-close" onclick="closeModal('editUserModal')">&times;</button>
+            </div>
+            <div class="admin-modal-body">
+                <form id="editUserForm">
+                    <input type="hidden" id="editUserId">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="editUserName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="editUserEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" id="editUserPhone">
+                    </div>
+                    <div class="form-group">
+                        <label>Blood Group</label>
+                        <select id="editUserBlood">
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input type="number" id="editUserAge" min="18" max="65">
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <textarea id="editUserAddress" rows="2"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="admin-modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('editUserModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveUserChanges()">
+                    <i class="fas fa-save"></i> Save Changes
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add User Modal -->
+    <div class="admin-modal" id="addUserModal">
+        <div class="admin-modal-overlay"></div>
+        <div class="admin-modal-content">
+            <div class="admin-modal-header">
+                <h3><i class="fas fa-user-plus"></i> Add New User</h3>
+                <button class="admin-modal-close" onclick="closeModal('addUserModal')">&times;</button>
+            </div>
+            <div class="admin-modal-body">
+                <form id="addUserForm">
+                    <div class="form-group">
+                        <label>Full Name <span class="required">*</span></label>
+                        <input type="text" id="addUserName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email <span class="required">*</span></label>
+                        <input type="email" id="addUserEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password <span class="required">*</span></label>
+                        <input type="password" id="addUserPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone <span class="required">*</span></label>
+                        <input type="tel" id="addUserPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Blood Group <span class="required">*</span></label>
+                        <select id="addUserBlood" required>
+                            <option value="">Select Blood Group</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Age <span class="required">*</span></label>
+                        <input type="number" id="addUserAge" min="18" max="65" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <textarea id="addUserAddress" rows="2"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="admin-modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('addUserModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="addNewUser()">
+                    <i class="fas fa-user-plus"></i> Add User
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirm Delete Modal -->
+    <div class="admin-modal" id="confirmDeleteModal">
+        <div class="admin-modal-overlay"></div>
+        <div class="admin-modal-content modal-small">
+            <div class="admin-modal-header danger">
+                <h3><i class="fas fa-exclamation-triangle"></i> Confirm Delete</h3>
+                <button class="admin-modal-close" onclick="closeModal('confirmDeleteModal')">&times;</button>
+            </div>
+            <div class="admin-modal-body">
+                <p>Are you sure you want to delete this user? This action cannot be undone.</p>
+                <p class="delete-user-name" id="deleteUserName"></p>
+            </div>
+            <div class="admin-modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('confirmDeleteModal')">Cancel</button>
+                <button class="btn btn-danger" id="confirmDeleteBtn">
+                    <i class="fas fa-trash-alt"></i> Delete User
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Confirm Delete Modal -->
+    <div class="admin-modal" id="confirmDeleteModal">
+        <div class="admin-modal-overlay"></div>
+        <div class="admin-modal-content modal-small">
+            <div class="admin-modal-header danger">
+                <h3><i class="fas fa-exclamation-triangle"></i> Confirm Delete</h3>
+                <button class="admin-modal-close" onclick="closeModal('confirmDeleteModal')">&times;</button>
+            </div>
+            <div class="admin-modal-body">
+                <p>Are you sure you want to delete this user? This action cannot be undone.</p>
+                <p class="delete-user-name" id="deleteUserName"></p>
+            </div>
+            <div class="admin-modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('confirmDeleteModal')">Cancel</button>
+                <button class="btn btn-danger" id="confirmDeleteBtn">
+                    <i class="fas fa-trash-alt"></i> Delete User
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Confirm Delete Modal -->
+    <div class="admin-modal" id="confirmDeleteModal">
+        <div class="admin-modal-overlay"></div>
+        <div class="admin-modal-content modal-small">
+            <div class="admin-modal-header danger">
+                <h3><i class="fas fa-exclamation-triangle"></i> Confirm Delete</h3>
+                <button class="admin-modal-close" onclick="closeModal('confirmDeleteModal')">&times;</button>
+            </div>
+            <div class="admin-modal-body">
+                <p>Are you sure you want to delete this user? This action cannot be undone.</p>
+                <p class="delete-user-name" id="deleteUserName"></p>
+            </div>
+            <div class="admin-modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('confirmDeleteModal')">Cancel</button>
+                <button class="btn btn-danger" id="confirmDeleteBtn">
+                    <i class="fas fa-trash-alt"></i> Delete User
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Confirm Delete Modal -->
+    <div class="admin-modal" id="confirmDeleteModal">
+        <div class="admin-modal-overlay"></div>
+        <div class="admin-modal-content modal-small">
+            <div class="admin-modal-header danger">
+                <h3><i class="fas fa-exclamation-triangle"></i> Confirm Delete</h3>
+                <button class="admin-modal-close" onclick="closeModal('confirmDeleteModal')">&times;</button>
+            </div>
+            <div class="admin-modal-body">
+                <p>Are you sure you want to delete this user? This action cannot be undone.</p>
+                <p class="delete-user-name" id="deleteUserName"></p>
+            </div>
+            <div class="admin-modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('confirmDeleteModal')">Cancel</button>
+                <button class="btn btn-danger" id="confirmDeleteBtn">
+                    <i class="fas fa-trash-alt"></i> Delete User
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <i class="fas fa-check-circle"></i>
+            <span id="toastMessage">Success!</span>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script src="admin.js"></script>
+    <script>
+        // Notification panel toggle
+        const notifBtn = document.getElementById('notificationBtn');
+        const notifPanel = document.getElementById('notificationPanel');
+        if (notifBtn && notifPanel) {
+            notifBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isVisible = notifPanel.style.display === 'block';
+                notifPanel.style.display = isVisible ? 'none' : 'block';
+            });
+            document.addEventListener('click', function(e) {
+                if (!notifPanel.contains(e.target) && e.target !== notifBtn) {
+                    notifPanel.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - RakhtSeva</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <!-- Bootstrap CSS (loaded before custom CSS so our styles always win) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body class="auth-page">
+    <!-- ========== NAVIGATION BAR ========== -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-tint"></i>
+                <span>RakhtSeva</span>
+            </a>
+            
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="donate.html" class="nav-link">Dashboard</a></li>
+                <li><a href="login.html" class="nav-link">Login</a></li>
+                <li><a href="signup.html" class="nav-link btn-signup active">Sign Up</a></li>
+                <!-- Dark Mode Toggle - At the end -->
+                <li class="theme-toggle-wrapper">
+                    <div class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+                        <i class="fas fa-moon" id="themeIcon"></i>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ========== SIGNUP FORM SECTION ========== -->
+    <section class="auth-section">
+        <div class="auth-container">
+            <!-- Decorative Elements -->
+            <div class="auth-decoration">
+                <div class="decoration-circle circle-1"></div>
+                <div class="decoration-circle circle-2"></div>
+                <div class="decoration-circle circle-3"></div>
+            </div>
+            
+            <!-- Signup Card -->
+            <div class="auth-card auth-card-signup">
+                <!-- Card Header -->
+                <div class="auth-header">
+                    <div class="auth-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h2>Create Account</h2>
+                    <p>Join our community of life-savers</p>
+                </div>
+                
+                <!-- Signup Form -->
+                <form class="auth-form" id="signupForm" novalidate>
+                    <!-- Name Input -->
+                    <div class="form-group">
+                        <label for="fullName">
+                            <i class="fas fa-user"></i> Full Name <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="fullName" 
+                            name="fullName" 
+                            placeholder="Enter your full name"
+                            required
+                            minlength="3"
+                            autocomplete="name"
+                        >
+                        <span class="error-message" id="nameError"></span>
+                        <span class="input-hint">Minimum 3 characters, letters only</span>
+                    </div>
+                    
+                    <!-- Email Input -->
+                    <div class="form-group">
+                        <label for="email">
+                            <i class="fas fa-envelope"></i> Email Address <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="Enter your email (e.g., user@example.com)"
+                            required
+                            autocomplete="email"
+                        >
+                        <span class="error-message" id="emailError"></span>
+                        <span class="input-hint">Must contain @ and valid domain (.com, .in, .org, etc.)</span>
+                    </div>
+                    
+                    <!-- Blood Group Select -->
+                    <div class="form-group">
+                        <label for="bloodGroup">
+                            <i class="fas fa-tint"></i> Blood Group <span class="required">*</span>
+                        </label>
+                        <select id="bloodGroup" name="bloodGroup" required>
+                            <option value="">Select Blood Group</option>
+                            <option value="A+">A+ (A Positive)</option>
+                            <option value="A-">A- (A Negative)</option>
+                            <option value="B+">B+ (B Positive)</option>
+                            <option value="B-">B- (B Negative)</option>
+                            <option value="O+">O+ (O Positive)</option>
+                            <option value="O-">O- (O Negative - Universal Donor)</option>
+                            <option value="AB+">AB+ (AB Positive - Universal Recipient)</option>
+                            <option value="AB-">AB- (AB Negative)</option>
+                        </select>
+                        <span class="error-message" id="bloodError"></span>
+                    </div>
+                    
+                    <!-- Age Input -->
+                    <div class="form-group">
+                        <label for="age">
+                            <i class="fas fa-birthday-cake"></i> Age <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="number" 
+                            id="age" 
+                            name="age" 
+                            placeholder="Enter your age"
+                            required
+                            min="18"
+                            max="65"
+                        >
+                        <span class="error-message" id="ageError"></span>
+                        <span class="input-hint">Must be between 18 and 65 years</span>
+                    </div>
+                    
+                    <!-- Phone Number -->
+                    <div class="form-group">
+                        <label for="phone">
+                            <i class="fas fa-phone"></i> Phone Number <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="tel" 
+                            id="phone" 
+                            name="phone" 
+                            placeholder="Enter 10-digit phone number"
+                            required
+                            pattern="[0-9]{10}"
+                            maxlength="10"
+                            autocomplete="tel"
+                        >
+                        <span class="error-message" id="phoneError"></span>
+                        <span class="input-hint">10 digits only (e.g., 9876543210)</span>
+                    </div>
+                    
+                    <!-- Address -->
+                    <div class="form-group">
+                        <label for="address">
+                            <i class="fas fa-map-marker-alt"></i> Address <span class="required">*</span>
+                        </label>
+                        <textarea 
+                            id="address" 
+                            name="address" 
+                            placeholder="Enter your full address"
+                            required
+                            rows="2"
+                            minlength="10"
+                        ></textarea>
+                        <span class="error-message" id="addressError"></span>
+                        <span class="input-hint">Minimum 10 characters</span>
+                    </div>
+                    
+                    <!-- Password Input -->
+                    <div class="form-group">
+                        <label for="password">
+                            <i class="fas fa-lock"></i> Password <span class="required">*</span>
+                        </label>
+                        <div class="password-wrapper">
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                placeholder="Create a strong password"
+                                required
+                                minlength="8"
+                                autocomplete="new-password"
+                            >
+                            <button type="button" class="toggle-password" id="togglePassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <span class="error-message" id="passwordError"></span>
+                        <!-- Password Strength Indicator -->
+                        <div class="password-strength">
+                            <div class="strength-bar" id="strengthBar"></div>
+                        </div>
+                        <span class="strength-text" id="strengthText"></span>
+                        <div class="password-requirements">
+                            <p class="requirement" id="req-length"><i class="fas fa-circle"></i> At least 8 characters</p>
+                            <p class="requirement" id="req-upper"><i class="fas fa-circle"></i> One uppercase letter</p>
+                            <p class="requirement" id="req-lower"><i class="fas fa-circle"></i> One lowercase letter</p>
+                            <p class="requirement" id="req-number"><i class="fas fa-circle"></i> One number</p>
+                            <p class="requirement" id="req-special"><i class="fas fa-circle"></i> One special character (!@#$%)</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Confirm Password Input -->
+                    <div class="form-group">
+                        <label for="confirmPassword">
+                            <i class="fas fa-lock"></i> Confirm Password <span class="required">*</span>
+                        </label>
+                        <div class="password-wrapper">
+                            <input 
+                                type="password" 
+                                id="confirmPassword" 
+                                name="confirmPassword" 
+                                placeholder="Confirm your password"
+                                required
+                                autocomplete="new-password"
+                            >
+                            <button type="button" class="toggle-password" id="toggleConfirmPassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <span class="error-message" id="confirmPasswordError"></span>
+                        <span class="password-match" id="passwordMatch"></span>
+                    </div>
+                    
+                    <!-- Terms & Conditions -->
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="terms" id="terms" required>
+                            <span class="checkmark"></span>
+                            I agree to the <a href="#" target="_blank">Terms & Conditions</a> and <a href="#" target="_blank">Privacy Policy</a>
+                        </label>
+                        <span class="error-message" id="termsError"></span>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary btn-block" id="signupBtn">
+                        <i class="fas fa-user-plus"></i> Create Account
+                    </button>
+                    
+                </form>
+                
+                <!-- Card Footer -->
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="login.html">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer footer-mini">
+        <div class="container">
+            <div class="footer-bottom">
+                <div class="footer-credits">
+                    <p>&copy; 2026 RakhtSeva. All Rights Reserved. | Made with <i class="fas fa-heart"></i> for humanity</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <i class="fas fa-check-circle"></i>
+            <span id="toastMessage">Success!</span>
+        </div>
+    </div>
+
+    <!-- ========== FLOATING EMERGENCY BUTTON ========== -->
+    <div class="emergency-float-btn" id="emergencyFloatBtn" title="Emergency Blood Request">
+        <div class="emergency-pulse"></div>
+        <i class="fas fa-ambulance"></i>
+    </div>
+
+    <!-- ========== EMERGENCY BLOOD ALERT MODAL ========== -->
+    <div class="modal" id="emergencyModal">
+        <div class="modal-overlay" id="emergencyModalOverlay"></div>
+        <div class="modal-content modal-emergency">
+            <button class="modal-close" id="emergencyModalClose">&times;</button>
+            
+            <div class="emergency-header">
+                <div class="emergency-icon-large">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <h2>🚨 Emergency Blood Request</h2>
+                <p>Submit an urgent blood request - Compatible donors will be notified immediately</p>
+            </div>
+            
+            <form class="emergency-form" id="emergencyForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Patient Name <span class="required">*</span></label>
+                        <input type="text" id="emergencyPatientName" placeholder="Enter patient name" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-tint"></i> Blood Group Needed <span class="required">*</span></label>
+                        <select id="emergencyBloodGroup" required>
+                            <option value="">Select Blood Group</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-hospital"></i> Hospital <span class="required">*</span></label>
+                        <input type="text" id="emergencyHospital" placeholder="Hospital name" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-phone"></i> Contact Number <span class="required">*</span></label>
+                        <input type="tel" id="emergencyPhone" placeholder="10-digit number" maxlength="10" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-clock"></i> Time Remaining</label>
+                    <div class="time-selector">
+                        <button type="button" class="time-btn active" data-hours="2">2 Hours</button>
+                        <button type="button" class="time-btn" data-hours="6">6 Hours</button>
+                        <button type="button" class="time-btn" data-hours="12">12 Hours</button>
+                        <button type="button" class="time-btn" data-hours="24">24 Hours</button>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-emergency btn-block">
+                    <i class="fas fa-paper-plane"></i> Send Emergency Alert
+                </button>
+            </form>
+            
+            <!-- Active Emergency Alerts -->
+            <div class="active-emergencies" id="activeEmergencies">
+                <h3><i class="fas fa-exclamation-triangle"></i> Active Emergency Alerts</h3>
+                <div class="emergency-list" id="emergencyList">
+                    <!-- Emergency alerts will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
